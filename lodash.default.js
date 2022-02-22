@@ -1,48 +1,48 @@
 /**
  * @license
  * Lodash (Custom Build) <https://lodash.com/>
- * Build: `lodash modularize exports="es" -o ./`
+ * Build: `lodash modularize exports="es" -o ./src/`
  * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
  * Released under MIT license <https://lodash.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
-import array from './array.js';
-import collection from './collection.js';
-import date from './date.js';
-import func from './function.js';
-import lang from './lang.js';
-import math from './math.js';
-import number from './number.js';
-import object from './object.js';
-import seq from './seq.js';
-import string from './string.js';
-import util from './util.js';
-import LazyWrapper from './_LazyWrapper.js';
-import LodashWrapper from './_LodashWrapper.js';
-import Symbol from './_Symbol.js';
-import arrayEach from './_arrayEach.js';
-import arrayPush from './_arrayPush.js';
-import baseForOwn from './_baseForOwn.js';
-import baseFunctions from './_baseFunctions.js';
-import baseInvoke from './_baseInvoke.js';
-import baseIteratee from './_baseIteratee.js';
-import baseRest from './_baseRest.js';
-import createHybrid from './_createHybrid.js';
-import identity from './identity.js';
-import isArray from './isArray.js';
-import isObject from './isObject.js';
-import keys from './keys.js';
-import last from './last.js';
-import lazyClone from './_lazyClone.js';
-import lazyReverse from './_lazyReverse.js';
-import lazyValue from './_lazyValue.js';
-import _mixin from './mixin.js';
-import negate from './negate.js';
-import realNames from './_realNames.js';
-import thru from './thru.js';
-import toInteger from './toInteger.js';
-import lodash from './wrapperLodash.js';
+import array from './src/array.js';
+import collection from './src/collection.js';
+import date from './src/date.js';
+import func from './src/function.js';
+import lang from './src/lang.js';
+import math from './src/math.js';
+import number from './src/number.js';
+import object from './src/object.js';
+import seq from './src/seq.js';
+import string from './src/string.js';
+import util from './src/util.js';
+import LazyWrapper from './src/_LazyWrapper.js';
+import LodashWrapper from './src/_LodashWrapper.js';
+import Symbol from './src/_Symbol.js';
+import arrayEach from './src/_arrayEach.js';
+import arrayPush from './src/_arrayPush.js';
+import baseForOwn from './src/_baseForOwn.js';
+import baseFunctions from './src/_baseFunctions.js';
+import baseInvoke from './src/_baseInvoke.js';
+import baseIteratee from './src/_baseIteratee.js';
+import baseRest from './src/_baseRest.js';
+import createHybrid from './src/_createHybrid.js';
+import identity from './src/identity.js';
+import isArray from './src/isArray.js';
+import isObject from './src/isObject.js';
+import keys from './src/keys.js';
+import last from './src/last.js';
+import lazyClone from './src/_lazyClone.js';
+import lazyReverse from './src/_lazyReverse.js';
+import lazyValue from './src/_lazyValue.js';
+import _mixin from './src/mixin.js';
+import negate from './src/negate.js';
+import realNames from './src/_realNames.js';
+import thru from './src/thru.js';
+import toInteger from './src/toInteger.js';
+import lodash from './src/wrapperLodash.js';
 
 /** Used as the semantic version number. */
 var VERSION = '4.17.21';
@@ -52,14 +52,14 @@ var WRAP_BIND_KEY_FLAG = 2;
 
 /** Used to indicate the type of lazy iteratees. */
 var LAZY_FILTER_FLAG = 1,
-    LAZY_WHILE_FLAG = 3;
+  LAZY_WHILE_FLAG = 3;
 
 /** Used as references for the maximum length and index of an array. */
 var MAX_ARRAY_LENGTH = 4294967295;
 
 /** Used for built-in method references. */
 var arrayProto = Array.prototype,
-    objectProto = Object.prototype;
+  objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
 var hasOwnProperty = objectProto.hasOwnProperty;
@@ -69,15 +69,15 @@ var symIterator = Symbol ? Symbol.iterator : undefined;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeMax = Math.max,
-    nativeMin = Math.min;
+  nativeMin = Math.min;
 
 // wrap `_.mixin` so it works when provided only one argument
-var mixin = (function(func) {
-  return function(object, source, options) {
+var mixin = (function (func) {
+  return function (object, source, options) {
     if (options == null) {
       var isObj = isObject(source),
-          props = isObj && keys(source),
-          methodNames = props && props.length && baseFunctions(source, props);
+        props = isObj && keys(source),
+        methodNames = props && props.length && baseFunctions(source, props);
 
       if (!(methodNames ? methodNames.length : isObj)) {
         options = source;
@@ -403,9 +403,9 @@ lodash.each = collection.forEach;
 lodash.eachRight = collection.forEachRight;
 lodash.first = array.head;
 
-mixin(lodash, (function() {
+mixin(lodash, (function () {
   var source = {};
-  baseForOwn(lodash, function(func, methodName) {
+  baseForOwn(lodash, function (func, methodName) {
     if (!hasOwnProperty.call(lodash.prototype, methodName)) {
       source[methodName] = func;
     }
@@ -424,13 +424,13 @@ lodash.VERSION = VERSION;
 (lodash.templateSettings = string.templateSettings).imports._ = lodash;
 
 // Assign default placeholders.
-arrayEach(['bind', 'bindKey', 'curry', 'curryRight', 'partial', 'partialRight'], function(methodName) {
+arrayEach(['bind', 'bindKey', 'curry', 'curryRight', 'partial', 'partialRight'], function (methodName) {
   lodash[methodName].placeholder = lodash;
 });
 
 // Add `LazyWrapper` methods for `_.drop` and `_.take` variants.
-arrayEach(['drop', 'take'], function(methodName, index) {
-  LazyWrapper.prototype[methodName] = function(n) {
+arrayEach(['drop', 'take'], function (methodName, index) {
+  LazyWrapper.prototype[methodName] = function (n) {
     n = n === undefined ? 1 : nativeMax(toInteger(n), 0);
 
     var result = (this.__filtered__ && !index)
@@ -448,17 +448,17 @@ arrayEach(['drop', 'take'], function(methodName, index) {
     return result;
   };
 
-  LazyWrapper.prototype[methodName + 'Right'] = function(n) {
+  LazyWrapper.prototype[methodName + 'Right'] = function (n) {
     return this.reverse()[methodName](n).reverse();
   };
 });
 
 // Add `LazyWrapper` methods that accept an `iteratee` value.
-arrayEach(['filter', 'map', 'takeWhile'], function(methodName, index) {
+arrayEach(['filter', 'map', 'takeWhile'], function (methodName, index) {
   var type = index + 1,
-      isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
+    isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
 
-  LazyWrapper.prototype[methodName] = function(iteratee) {
+  LazyWrapper.prototype[methodName] = function (iteratee) {
     var result = this.clone();
     result.__iteratees__.push({
       'iteratee': baseIteratee(iteratee, 3),
@@ -470,49 +470,49 @@ arrayEach(['filter', 'map', 'takeWhile'], function(methodName, index) {
 });
 
 // Add `LazyWrapper` methods for `_.head` and `_.last`.
-arrayEach(['head', 'last'], function(methodName, index) {
+arrayEach(['head', 'last'], function (methodName, index) {
   var takeName = 'take' + (index ? 'Right' : '');
 
-  LazyWrapper.prototype[methodName] = function() {
+  LazyWrapper.prototype[methodName] = function () {
     return this[takeName](1).value()[0];
   };
 });
 
 // Add `LazyWrapper` methods for `_.initial` and `_.tail`.
-arrayEach(['initial', 'tail'], function(methodName, index) {
+arrayEach(['initial', 'tail'], function (methodName, index) {
   var dropName = 'drop' + (index ? '' : 'Right');
 
-  LazyWrapper.prototype[methodName] = function() {
+  LazyWrapper.prototype[methodName] = function () {
     return this.__filtered__ ? new LazyWrapper(this) : this[dropName](1);
   };
 });
 
-LazyWrapper.prototype.compact = function() {
+LazyWrapper.prototype.compact = function () {
   return this.filter(identity);
 };
 
-LazyWrapper.prototype.find = function(predicate) {
+LazyWrapper.prototype.find = function (predicate) {
   return this.filter(predicate).head();
 };
 
-LazyWrapper.prototype.findLast = function(predicate) {
+LazyWrapper.prototype.findLast = function (predicate) {
   return this.reverse().find(predicate);
 };
 
-LazyWrapper.prototype.invokeMap = baseRest(function(path, args) {
+LazyWrapper.prototype.invokeMap = baseRest(function (path, args) {
   if (typeof path == 'function') {
     return new LazyWrapper(this);
   }
-  return this.map(function(value) {
+  return this.map(function (value) {
     return baseInvoke(value, path, args);
   });
 });
 
-LazyWrapper.prototype.reject = function(predicate) {
+LazyWrapper.prototype.reject = function (predicate) {
   return this.filter(negate(baseIteratee(predicate)));
 };
 
-LazyWrapper.prototype.slice = function(start, end) {
+LazyWrapper.prototype.slice = function (start, end) {
   start = toInteger(start);
 
   var result = this;
@@ -531,32 +531,32 @@ LazyWrapper.prototype.slice = function(start, end) {
   return result;
 };
 
-LazyWrapper.prototype.takeRightWhile = function(predicate) {
+LazyWrapper.prototype.takeRightWhile = function (predicate) {
   return this.reverse().takeWhile(predicate).reverse();
 };
 
-LazyWrapper.prototype.toArray = function() {
+LazyWrapper.prototype.toArray = function () {
   return this.take(MAX_ARRAY_LENGTH);
 };
 
 // Add `LazyWrapper` methods to `lodash.prototype`.
-baseForOwn(LazyWrapper.prototype, function(func, methodName) {
+baseForOwn(LazyWrapper.prototype, function (func, methodName) {
   var checkIteratee = /^(?:filter|find|map|reject)|While$/.test(methodName),
-      isTaker = /^(?:head|last)$/.test(methodName),
-      lodashFunc = lodash[isTaker ? ('take' + (methodName == 'last' ? 'Right' : '')) : methodName],
-      retUnwrapped = isTaker || /^find/.test(methodName);
+    isTaker = /^(?:head|last)$/.test(methodName),
+    lodashFunc = lodash[isTaker ? ('take' + (methodName == 'last' ? 'Right' : '')) : methodName],
+    retUnwrapped = isTaker || /^find/.test(methodName);
 
   if (!lodashFunc) {
     return;
   }
-  lodash.prototype[methodName] = function() {
+  lodash.prototype[methodName] = function () {
     var value = this.__wrapped__,
-        args = isTaker ? [1] : arguments,
-        isLazy = value instanceof LazyWrapper,
-        iteratee = args[0],
-        useLazy = isLazy || isArray(value);
+      args = isTaker ? [1] : arguments,
+      isLazy = value instanceof LazyWrapper,
+      iteratee = args[0],
+      useLazy = isLazy || isArray(value);
 
-    var interceptor = function(value) {
+    var interceptor = function (value) {
       var result = lodashFunc.apply(lodash, arrayPush([value], args));
       return (isTaker && chainAll) ? result[0] : result;
     };
@@ -566,9 +566,9 @@ baseForOwn(LazyWrapper.prototype, function(func, methodName) {
       isLazy = useLazy = false;
     }
     var chainAll = this.__chain__,
-        isHybrid = !!this.__actions__.length,
-        isUnwrapped = retUnwrapped && !chainAll,
-        onlyLazy = isLazy && !isHybrid;
+      isHybrid = !!this.__actions__.length,
+      isUnwrapped = retUnwrapped && !chainAll,
+      onlyLazy = isLazy && !isHybrid;
 
     if (!retUnwrapped && useLazy) {
       value = onlyLazy ? value : new LazyWrapper(this);
@@ -585,25 +585,25 @@ baseForOwn(LazyWrapper.prototype, function(func, methodName) {
 });
 
 // Add `Array` methods to `lodash.prototype`.
-arrayEach(['pop', 'push', 'shift', 'sort', 'splice', 'unshift'], function(methodName) {
+arrayEach(['pop', 'push', 'shift', 'sort', 'splice', 'unshift'], function (methodName) {
   var func = arrayProto[methodName],
-      chainName = /^(?:push|sort|unshift)$/.test(methodName) ? 'tap' : 'thru',
-      retUnwrapped = /^(?:pop|shift)$/.test(methodName);
+    chainName = /^(?:push|sort|unshift)$/.test(methodName) ? 'tap' : 'thru',
+    retUnwrapped = /^(?:pop|shift)$/.test(methodName);
 
-  lodash.prototype[methodName] = function() {
+  lodash.prototype[methodName] = function () {
     var args = arguments;
     if (retUnwrapped && !this.__chain__) {
       var value = this.value();
       return func.apply(isArray(value) ? value : [], args);
     }
-    return this[chainName](function(value) {
+    return this[chainName](function (value) {
       return func.apply(isArray(value) ? value : [], args);
     });
   };
 });
 
 // Map minified method names to their real names.
-baseForOwn(LazyWrapper.prototype, function(func, methodName) {
+baseForOwn(LazyWrapper.prototype, function (func, methodName) {
   var lodashFunc = lodash[methodName];
   if (lodashFunc) {
     var key = lodashFunc.name + '';
