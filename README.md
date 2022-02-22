@@ -10,7 +10,7 @@ So I have to fork it by a modules.
 Now you can use :
 
 ```ts
-import * as _ from "https://deno.land/x/lodash_es@v0.0.1/mod.ts";
+import * as _ from "https://deno.land/x/lodash_es@v0.0.2/mod.ts";
 
 const array = [1];
 const other = _.concat(array, 2, [3], [[4]]);
